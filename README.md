@@ -1,0 +1,1 @@
+I need a small calculation form for a small project. I wrote it a few years ago in html/javascript. But it no longer works with current script editions. Now I have the problem that I can't get it to run.
