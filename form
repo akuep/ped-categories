@@ -10,6 +10,7 @@
 <input type="text" id="add4"  name="meldung" size="6" />
 <label>Auswählen falls zutreffend<label>
 <input type="checkbox" name="Auswahl" value="Fluid ist ein instabiles Gas" id="check1">
+<input type="text" id="opRes" disabled="disabled"
 <script type="text/javascript">
 function categorie ()
 	{
