@@ -1,0 +1,76 @@
+<html>
+<form>
+<label>Max.zul. Druck [bar]</label>
+<input type="number" id="add1" name="ps" size="6" />
+<label>Volumen [Liter]</label> 
+<input type="number" id="add2"  name="v" size="6" /> 
+<label>Kategorie</label> 
+<input type="text" id="add3"  name="categorie" size="6" />
+<label>Hinweise</label> 
+<input type="text" id="add4"  name="meldung" size="6" />
+<label>Auswählen falls zutreffend<label>
+<input type="checkbox" name="Auswahl" value="Fluid ist ein instabiles Gas" id="check1">
+<script type="text/javascript">
+function categorie ()
+	{
+                let form  = document.getElementById('dia01');
+                let ps = document.getElementById('add1').value;
+		let v = document.getElementById('add2').value;
+                let oR = document.getElementById('opRes');
+
+/*Ersetzt ein Komma in der Zahl durch einen Dezimalpunkt */
+
+ps = ps.replace(/,/, ".");    
+v= v.replace(/,/, ".");     
+x = x.replace(/,/, ".");    
+y = y.replace(/,/, ".");   
+
+if (isNaN(parseFloat(x)) || isNaN(parseFloat(y))) {
+ oR.value = "Fehler: keine Zahl";
+} 
+
+/* Berechnung der Kategorie */
+		let psv = ps*v.value;
+		let Y = 'Keine Kategorie';
+		let Z = 'Keine Kat.; Freie Modulauswahl!';
+		let I = 'Kategorie I';
+		let II = 'Kategorie II';
+		let III = 'Kategorie III';
+		let IV = 'Kategorie IV';
+		let meld1 = 'Das Druckgeraet ist aufgrund der eingegebenen Betriebsbedingungen (Druck, Volumen)  keiner Kategorie zuzuordnen und braucht keinem Konformitaetsbewertungsverfahren unterzogen werden. Folglich darf das Druckgeraet auch nicht mit einem CE-Kennzeichen versehen sein.  Das Druckgeraet muss jedoch in Uebereinstimmung mit der geltenden Ingenieurpraxis ausgelegt und hergestellt werden.';
+		let meld2 = 'Das Druckgeraet liegt aufgrund des geringen Gefahrenpotentials (Druck PS <= 0,5 bar) nicht im Geltungsbereich der Druckgeraeterichtlinie!';
+		let meld3 = 'Bitte tragen Sie in den beiden Feldern fuer Druck und Volumen Zahlenwerte ein (Schreibweise: Punkt statt Komma).';
+		let meld4 = 'Das Druckgeraet muss die grundlegenden Anforderungen des Anhang I erfuellen und eine CE-Kennzeichnung tragen. Fuer das Konformitaetsbewertungsverfahren besteht die freie Modulauswahl. Siehe hierzu die Leitlinie A-05';
+		
+
+		if (ps > 200 && v > 0.0001 && v <= 0.1)
+		document.getElementById('add3').value = Z;
+		
+		if ((ps > 0.5  && ps <= 200 && v > 0.0001 && v <= 1) || (ps > 0.5 && v > 1 &&  psv <= 25))
+		document.getElementById('add3').value= Y;
+
+
+		if (ps > 0.5 && v > 1 && psv > 25 && psv <= 50)
+		document.getElementById('add3').value = I;
+		
+		if (ps > 0.5 && v > 1 && psv > 25 && psv <= 50 && document.getElementById('check1').checked)
+		document.getElementById('add3').value = III;
+		
+		if (ps > 0.5 && v > 1 && psv > 50 && psv <= 200 )
+		document.getElementById('add3').value = II;
+		
+		if (ps > 0.5 && v > 1 && psv > 50 && psv <= 200 && document.getElementById('check1').checked)
+		document.getElementById('add3').value = III;
+		
+		
+		if ((ps > 0.5 && v > 1 && psv > 200 && psv <= 1000) || (v <= 1 && v > 0.1 && ps > 200 && ps <= 1000))
+		document.getElementById('add3').value = III;
+		
+		if ((ps > 0.5 && ps <= 1000 && psv > 1000) || ps > 1000)
+		document.getElementById('add3').value = IV;
+		}
+
+</script>
+<input type = "submit" value= "Kategorie ermitteln" onClick = "categorie (this.value)">
+</form>
+</html>
