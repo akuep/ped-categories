@@ -1,5 +1,5 @@
 <html>
-<form>
+<form id="dia01">
 <label>Max.zul. Druck [bar]</label>
 <input type="number" id="add1" name="ps" size="6" />
 <label>Volumen [Liter]</label> 
